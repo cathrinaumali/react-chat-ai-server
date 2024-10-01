@@ -2,7 +2,11 @@ require("dotenv").config();
 
 const express = require("express");
 const cors = require("cors");
-const { GoogleGenerativeAI } = require("@google/generative-ai");
+const {
+  GoogleGenerativeAI,
+  HarmCategory,
+  HarmBlockThreshold,
+} = require("@google/generative-ai");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -34,11 +38,18 @@ app.get("/api/generate", async (req, res) => {
   };
 
   try {
-    const prompt = req.query.prompt || "Hello, how are you?"; // Use query parameter or default prompt
+    const prompt = req.query.prompt || "Hello, how are you?";
+    const safetySettings = [
+      {
+        category: HarmCategory.HARM_CATEGORY_HATE_SPEECH,
+        threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
+      },
+    ];
 
     // Start the chat session
     const chatSession = model.startChat({
       generationConfig,
+      safetySettings,
       history: [],
     });
 
