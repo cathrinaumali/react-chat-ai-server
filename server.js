@@ -14,6 +14,7 @@ const ORIGIN = process.env.ORIGIN || "http://localhost:3000";
 
 const allowedOrigins = [
   ORIGIN,
+  "https://react-chat-ai-client.vercel.app/",
   "http://localhost:3000", // For local testing
 ];
 
