@@ -23,6 +23,10 @@ app.use(
   })
 );
 
+app.get("/", async (req, res) => {
+  return res.send("Welcome to Node!");
+});
+
 // Route to handle requests
 app.get("/api/generate", async (req, res) => {
   const genAI = new GoogleGenerativeAI(apiKey);
