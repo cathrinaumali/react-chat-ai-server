@@ -12,6 +12,11 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const ORIGIN = process.env.ORIGIN || "http://localhost:3000";
 
+const allowedOrigins = [
+  ORIGIN,
+  "http://localhost:3000", // For local testing
+];
+
 const apiKey = process.env.GEMINI_API_KEY;
 if (!apiKey) {
   throw new Error("GEMINI_API_KEY is not set in the environment variables.");
