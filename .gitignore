@@ -44,3 +44,4 @@ Thumbs.db
 # Ignore dependency directories
 jspm_packages/
 typings/
+.vercel
